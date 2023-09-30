@@ -12,11 +12,11 @@ const QuranCard = ({ verse }) => {
   const handleCopy = () => {
     alert('Verse copied to clipboard!');
   };
-  
+
   return (
     <div className="quran-card">
-      <div className="quran-text">{verse.text}</div>
-      <div className="transliteration">{verse.transliteration}</div>
+      <div className="quran-text">{verse.verses[0].text}</div>
+      <div className="transliteration">{verse.transliteration}:{verse.verses[0].id}</div>
       <ReactPlayer
         url={verse.audiourl}
         playing={isPlaying}
@@ -26,7 +26,9 @@ const QuranCard = ({ verse }) => {
         height="0"
       />
       <div className="controls">
-        <button onClick={handlePlayPause}>{isPlaying ? 'Pause' : 'Play'}</button>
+        <button onClick={handlePlayPause}>
+          {isPlaying ? 'Pause' : 'Play'}
+        </button>
         <CopyToClipboard text={verse.text} onCopy={handleCopy}>
           <button>Copy</button>
         </CopyToClipboard>
